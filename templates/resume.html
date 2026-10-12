@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero text-center mb-5">
+    <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+         class="profile-photo mb-3"
+         alt="Фото профілю">
+
+    <h1 class="fw-bold">Бундзяк Аліна</h1>
+    <p class="lead">Студентка спеціальності «Інженерія програмного забезпечення»</p>
+    <p>Вивчаю веброзробку, Python, Flask та інші технології програмування.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-primary">
+        Зв'язатися зі мною
+    </a>
+</section>
+
+<section id="about" class="content-section">
+    <h2>Про себе</h2>
+    <p>
+        Я студентка третього курсу спеціальності
+        «Інженерія програмного забезпечення».
+        Цікавлюся програмуванням, вебтехнологіями
+        та розробкою програмного забезпечення.
+        Прагну вдосконалювати практичні навички
+        й отримувати досвід у командній розробці.
+    </p>
+</section>
+
+<section id="education" class="content-section">
+    <h2>Освіта</h2>
+    <p><strong>Карпатський національний університет імені Василя Стефаника</strong></p>
+    <p>Факультет математики та інформатики</p>
+    <p>Спеціальність: Інженерія програмного забезпечення</p>
+    <p>Курс: 3</p>
+</section>
+
+<section id="skills" class="content-section">
+    <h2>Навички</h2>
+    <ul>
+        <li>Основи об'єктно-орієнтованого програмування</li>
+        <li>Робота з Git та GitHub</li>
+        <li>Створення вебзастосунків</li>
+        <li>Робота з базами даних</li>
+        <li>Командна робота та організація завдань</li>
+    </ul>
+</section>
+
+<section id="technologies" class="content-section">
+    <h2>Технології</h2>
+    <div class="d-flex flex-wrap gap-2">
+        <span class="badge bg-primary">Python</span>
+        <span class="badge bg-primary">Flask</span>
+        <span class="badge bg-primary">HTML</span>
+        <span class="badge bg-primary">CSS</span>
+        <span class="badge bg-primary">Bootstrap</span>
+        <span class="badge bg-secondary">Java</span>
+        <span class="badge bg-secondary">JavaScript</span>
+        <span class="badge bg-secondary">Git</span>
+        <span class="badge bg-secondary">SQL</span>
+    </div>
+</section>
+
+<section id="projects" class="content-section">
+    <h2>Досвід роботи та проєкти</h2>
+
+    <h5>Командний вебпроєкт</h5>
+    <p>
+        Участь у розробці серверної частини інформаційної
+        системи дитячого садка з використанням Node.js,
+        Express та бази даних.
+    </p>
+
+    <h5>Навчальні проєкти</h5>
+    <p>
+        Розробка програм мовою Java,
+        створення інтерфейсів JavaFX,
+        виконання практичних завдань із Python та Flask.
+    </p>
+</section>
+
+{% endblock %}

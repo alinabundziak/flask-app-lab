@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="content-section">
+    <h1 class="mb-4">Контакти</h1>
+
+    <p>Маєте запитання або пропозицію? Заповніть форму нижче.</p>
+
+    {% if message %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('contact') }}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Ваше ім'я</label>
+            <input type="text" class="form-control" id="name"
+                   name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Електронна пошта</label>
+            <input type="email" class="form-control" id="email"
+                   name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Повідомлення</label>
+            <textarea class="form-control" id="message"
+                      name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Надіслати
+        </button>
+    </form>
+</section>
+
+{% endblock %}
