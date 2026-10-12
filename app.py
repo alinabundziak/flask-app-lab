@@ -1,15 +1,16 @@
-from flask import Flask
+#from flask import Flask
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
-@app.route('/')
-def main():
-    return 'Hello, world!'
+#@app.route('/')
+#def main():
+#    return 'Hello, world!'
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+#    app.run(debug=True)
 
     
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -26,7 +27,7 @@ def contact():
     message = None
 
     if request.method == "POST":
-        message = "Форму заповнено успішно. Це демонстраційна форма, повідомлення не надсилається."
+        message = "Дякую! Це демонстраційна форма, тому повідомлення не надсилається."
 
     return render_template("contact.html", title="Контакти", message=message)
 

@@ -1,6 +1,20 @@
 
-<footer class="bg-dark text-white text-center py-4 mt-5">
+<footer class="portfolio-footer">
     <div class="container">
-        <p class="mb-0">© 2026 Бундзяк Аліна. Навчальний проєкт Flask.</p>
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">AB.</span>
+                <p>Software Engineering Student</p>
+            </div>
+
+            <a href="{{ url_for('resume') }}" class="footer-link">
+                Повернутися на головну ↑
+            </a>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Alina Bundziak</span>
+            <span>Designed & built with Flask</span>
+        </div>
     </div>
 </footer>

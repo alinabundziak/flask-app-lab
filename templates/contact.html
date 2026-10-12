@@ -3,40 +3,105 @@
 
 {% block content %}
 
-<section class="content-section">
-    <h1 class="mb-4">Контакти</h1>
+<section class="contact-page">
+    <div class="container">
 
-    <p>Маєте запитання або пропозицію? Заповніть форму нижче.</p>
+        <div class="contact-heading">
+            <span class="eyebrow">LET'S CONNECT / 2026</span>
+            <h1>GET IN<br><em>TOUCH.</em></h1>
+            <p>
+                Маєте запитання або цікаву ідею?
+                Залиште повідомлення у формі нижче.
+            </p>
+        </div>
 
-    {% if message %}
-    <div class="alert alert-success">
-        {{ message }}
+        <div class="row g-5 contact-layout">
+            <div class="col-lg-5">
+                <div class="contact-info">
+                    <span class="section-number">CONTACT INFORMATION</span>
+
+                    <h2>Давайте<br><em>спілкуватися.</em></h2>
+
+                    <p>
+                        Я цікавлюся програмуванням, розробкою
+                        вебзастосунків і новими можливостями
+                        для навчання та співпраці.
+                    </p>
+
+                    <div class="contact-detail">
+                        <span>LOCATION</span>
+                        <strong>Україна</strong>
+                    </div>
+
+                    <div class="contact-detail">
+                        <span>FIELD</span>
+                        <strong>Software Engineering</strong>
+                    </div>
+
+                    <div class="contact-detail">
+                        <span>FOCUS</span>
+                        <strong>Backend & Web Development</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="contact-form-box">
+                    <div class="form-topline">
+                        <span>SEND A MESSAGE</span>
+                        <span>✦</span>
+                    </div>
+
+                    {% if message %}
+                    <div class="alert alert-success portfolio-alert" role="status">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" action="{{ url_for('contact') }}">
+
+                        <div class="mb-4">
+                            <label for="name" class="form-label">ВАШЕ ІМ'Я</label>
+                            <input type="text"
+                                   id="name"
+                                   name="name"
+                                   class="form-control portfolio-input"
+                                   placeholder="Як до вас звертатися?"
+                                   required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email" class="form-label">EMAIL</label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   class="form-control portfolio-input"
+                                   placeholder="example@email.com"
+                                   required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">ПОВІДОМЛЕННЯ</label>
+                            <textarea id="message"
+                                      name="message"
+                                      rows="5"
+                                      class="form-control portfolio-input"
+                                      placeholder="Напишіть ваше повідомлення..."
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit" class="outline-button submit-button">
+                            Надіслати повідомлення <span>↗</span>
+                        </button>
+
+                        <p class="form-note">
+                            Демонстраційна форма. Повідомлення не надсилаються.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    {% endif %}
-
-    <form method="POST" action="{{ url_for('contact') }}">
-        <div class="mb-3">
-            <label for="name" class="form-label">Ваше ім'я</label>
-            <input type="text" class="form-control" id="name"
-                   name="name" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">Електронна пошта</label>
-            <input type="email" class="form-control" id="email"
-                   name="email" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="message" class="form-label">Повідомлення</label>
-            <textarea class="form-control" id="message"
-                      name="message" rows="5" required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">
-            Надіслати
-        </button>
-    </form>
 </section>
 
 {% endblock %}

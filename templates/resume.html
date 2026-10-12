@@ -3,81 +3,300 @@
 
 {% block content %}
 
-<section class="hero text-center mb-5">
-    <img src="{{ url_for('static', filename='images/profile.jpg') }}"
-         class="profile-photo mb-3"
-         alt="Фото профілю">
+<header class="hero">
+    <div class="container hero-container">
 
-    <h1 class="fw-bold">Бундзяк Аліна</h1>
-    <p class="lead">Студентка спеціальності «Інженерія програмного забезпечення»</p>
-    <p>Вивчаю веброзробку, Python, Flask та інші технології програмування.</p>
-    <a href="{{ url_for('contact') }}" class="btn btn-primary">
-        Зв'язатися зі мною
-    </a>
-</section>
+        <div class="hero-topline">
+            <span>SOFTWARE ENGINEERING STUDENT</span>
+            <span>PERSONAL PORTFOLIO / 2026</span>
+        </div>
 
-<section id="about" class="content-section">
-    <h2>Про себе</h2>
-    <p>
-        Я студентка третього курсу спеціальності
-        «Інженерія програмного забезпечення».
-        Цікавлюся програмуванням, вебтехнологіями
-        та розробкою програмного забезпечення.
-        Прагну вдосконалювати практичні навички
-        й отримувати досвід у командній розробці.
-    </p>
-</section>
+        <div class="hero-title-wrap">
+            <h1 class="hero-title">PORTFOLIO</h1>
+        </div>
 
-<section id="education" class="content-section">
-    <h2>Освіта</h2>
-    <p><strong>Карпатський національний університет імені Василя Стефаника</strong></p>
-    <p>Факультет математики та інформатики</p>
-    <p>Спеціальність: Інженерія програмного забезпечення</p>
-    <p>Курс: 3</p>
-</section>
+        <div class="row align-items-center hero-content">
+            <div class="col-lg-4 hero-intro">
+                <span class="eyebrow">HELLO, I'M ALINA ✦</span>
+                <h2>Створюю.<br>Навчаюсь.<br><em>Розвиваюсь.</em></h2>
 
-<section id="skills" class="content-section">
-    <h2>Навички</h2>
-    <ul>
-        <li>Основи об'єктно-орієнтованого програмування</li>
-        <li>Робота з Git та GitHub</li>
-        <li>Створення вебзастосунків</li>
-        <li>Робота з базами даних</li>
-        <li>Командна робота та організація завдань</li>
-    </ul>
-</section>
+                <p>
+                    Я Аліна Бундзяк — студентка інженерії
+                    програмного забезпечення, яка досліджує
+                    світ веброзробки та програмування.
+                </p>
 
-<section id="technologies" class="content-section">
-    <h2>Технології</h2>
-    <div class="d-flex flex-wrap gap-2">
-        <span class="badge bg-primary">Python</span>
-        <span class="badge bg-primary">Flask</span>
-        <span class="badge bg-primary">HTML</span>
-        <span class="badge bg-primary">CSS</span>
-        <span class="badge bg-primary">Bootstrap</span>
-        <span class="badge bg-secondary">Java</span>
-        <span class="badge bg-secondary">JavaScript</span>
-        <span class="badge bg-secondary">Git</span>
-        <span class="badge bg-secondary">SQL</span>
+                <a href="#about" class="outline-button">
+                    Дізнатися більше <span>↗</span>
+                </a>
+            </div>
+
+            <div class="col-lg-5 hero-photo-column">
+                <div class="hero-photo-frame">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                         alt="Портрет Аліни Бундзяк"
+                         class="hero-photo">
+                </div>
+            </div>
+
+            <div class="col-lg-3 hero-side-info">
+                <div class="side-line"></div>
+                <p>PYTHON / FLASK</p>
+                <p>WEB DEVELOPMENT</p>
+                <p>SOFTWARE ENGINEERING</p>
+                <span class="hero-index">01 / 06</span>
+            </div>
+        </div>
+
+        <div class="hero-bottomline">
+            <span>BASED IN UKRAINE</span>
+            <a href="#about">SCROLL TO EXPLORE ↓</a>
+        </div>
+    </div>
+</header>
+
+<section id="about" class="portfolio-section about-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">01 / ABOUT ME</span>
+            <span class="section-decoration">✦</span>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <h2 class="editorial-heading">Трохи<br><em>про мене.</em></h2>
+            </div>
+
+            <div class="col-lg-8">
+                <p class="about-lead">
+                    Програмування для мене — це можливість
+                    перетворювати ідеї на рішення, які працюють.
+                </p>
+
+                <p class="muted-text">
+                    Я навчаюся на третьому курсі спеціальності
+                    «Інженерія програмного забезпечення».
+                    Цікавлюся розробкою вебзастосунків,
+                    серверною логікою та роботою з базами даних.
+                    Розвиваю практичні навички через навчальні
+                    та командні проєкти.
+                </p>
+
+                <div class="about-details">
+                    <div>
+                        <span>НАПРЯМОК</span>
+                        <strong>Software Development</strong>
+                    </div>
+                    <div>
+                        <span>ІНТЕРЕСИ</span>
+                        <strong>Backend & Web</strong>
+                    </div>
+                    <div>
+                        <span>МЕТА</span>
+                        <strong>Професійний розвиток</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section id="projects" class="content-section">
-    <h2>Досвід роботи та проєкти</h2>
+<section id="education" class="portfolio-section education-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">02 / EDUCATION</span>
+            <span class="section-decoration">✦</span>
+        </div>
 
-    <h5>Командний вебпроєкт</h5>
-    <p>
-        Участь у розробці серверної частини інформаційної
-        системи дитячого садка з використанням Node.js,
-        Express та бази даних.
-    </p>
+        <h2 class="editorial-heading section-title">
+            Освіта <em>& розвиток.</em>
+        </h2>
 
-    <h5>Навчальні проєкти</h5>
-    <p>
-        Розробка програм мовою Java,
-        створення інтерфейсів JavaFX,
-        виконання практичних завдань із Python та Flask.
-    </p>
+        <div class="education-card">
+            <div class="education-year">2024 — NOW</div>
+
+            <div class="education-info">
+                <span class="eyebrow">BACHELOR'S DEGREE</span>
+                <h3>Інженерія програмного забезпечення</h3>
+                <p>
+                    Карпатський національний університет
+                    імені Василя Стефаника
+                </p>
+                <p class="muted-text">
+                    Факультет математики та інформатики · 3 курс
+                </p>
+            </div>
+
+            <div class="education-icon">↗</div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="portfolio-section skills-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">03 / SKILLS</span>
+            <span class="section-decoration">✦</span>
+        </div>
+
+        <h2 class="editorial-heading section-title">
+            Що я <em>вмію.</em>
+        </h2>
+
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-3">
+                <article class="skill-card">
+                    <span class="card-number">01</span>
+                    <span class="skill-symbol">⌘</span>
+                    <h3>Програмування</h3>
+                    <p>Основи алгоритмів, ООП та написання програм.</p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article class="skill-card">
+                    <span class="card-number">02</span>
+                    <span class="skill-symbol">◇</span>
+                    <h3>Веброзробка</h3>
+                    <p>HTML, CSS, Flask та основи серверної розробки.</p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article class="skill-card">
+                    <span class="card-number">03</span>
+                    <span class="skill-symbol">⌁</span>
+                    <h3>Бази даних</h3>
+                    <p>Основи SQL, PostgreSQL та моделювання даних.</p>
+                </article>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <article class="skill-card">
+                    <span class="card-number">04</span>
+                    <span class="skill-symbol">✳</span>
+                    <h3>Командна робота</h3>
+                    <p>Git, GitHub, організація завдань та взаємодія в команді.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="technologies" class="portfolio-section technologies-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">04 / TECHNOLOGIES</span>
+            <span class="section-decoration">✦</span>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="editorial-heading">
+                    Мої<br><em>інструменти.</em>
+                </h2>
+                <p class="muted-text mt-4">
+                    Технології, які я використовую
+                    в навчальних роботах та поступово опановую.
+                </p>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="tech-grid">
+                    <div class="tech-item">Python <span>↗</span></div>
+                    <div class="tech-item">Flask <span>↗</span></div>
+                    <div class="tech-item">Java <span>↗</span></div>
+                    <div class="tech-item">JavaScript <span>↗</span></div>
+                    <div class="tech-item">HTML / CSS <span>↗</span></div>
+                    <div class="tech-item">Bootstrap <span>↗</span></div>
+                    <div class="tech-item">SQL <span>↗</span></div>
+                    <div class="tech-item">Git / GitHub <span>↗</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="portfolio-section projects-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">05 / SELECTED PROJECTS</span>
+            <span class="section-decoration">✦</span>
+        </div>
+
+        <h2 class="editorial-heading section-title">
+            Обрані <em>проєкти.</em>
+        </h2>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <article class="project-card">
+                    <div class="project-visual visual-one">
+                        <span class="project-big-number">01</span>
+                        <span class="project-visual-label">WEB APPLICATION</span>
+                    </div>
+
+                    <div class="project-information">
+                        <span class="eyebrow">BACKEND / TEAM PROJECT</span>
+                        <h3>Інформаційна система дитячого садка</h3>
+                        <p>
+                            Командний навчальний проєкт із використанням
+                            Node.js, Express та PostgreSQL.
+                            Організація завдань і робота над REST API.
+                        </p>
+                        <div class="project-tags">
+                            <span>Node.js</span>
+                            <span>Express</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-lg-6">
+                <article class="project-card">
+                    <div class="project-visual visual-two">
+                        <span class="project-big-number">02</span>
+                        <span class="project-visual-label">DESKTOP APPLICATION</span>
+                    </div>
+
+                    <div class="project-information">
+                        <span class="eyebrow">JAVA / JAVAFX</span>
+                        <h3>Система обробки маршрутів</h3>
+                        <p>
+                            Навчальний застосунок із графічним
+                            інтерфейсом для роботи з маршрутами,
+                            сортування даних та збереження результатів.
+                        </p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>JavaFX</span>
+                            <span>OOP</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="portfolio-section cta-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-number">06 / GET IN TOUCH</span>
+            <span class="section-decoration">✦</span>
+        </div>
+
+        <div class="cta-content">
+            <span class="eyebrow">HAVE AN IDEA?</span>
+            <h2>LET'S CREATE<br><em>SOMETHING.</em></h2>
+            <p>Відкрита до нових знань, ідей та цікавих проєктів.</p>
+
+            <a href="{{ url_for('contact') }}" class="outline-button">
+                Написати мені <span>↗</span>
+            </a>
+        </div>
+    </div>
 </section>
 
 {% endblock %}
