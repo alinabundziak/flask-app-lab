@@ -4,19 +4,108 @@
 {% block content %}
 
 <section class="container py-5">
-    <div class="profile-box">
+    <div class="profile-box profile-{{ theme }}">
 
         <h1>Особистий профіль</h1>
-
         <h2>Вітаємо, {{ username }}!</h2>
-
         <p>Ви успішно увійшли до системи.</p>
 
         <form method="POST" action="{{ url_for('users.logout') }}">
-            <button type="submit" class="outline-button">
+            <button class="outline-button" type="submit">
                 Вийти
             </button>
         </form>
+
+        <hr>
+
+        <h3>Додати cookie</h3>
+
+        <form method="POST" action="{{ url_for('users.add_cookie') }}">
+
+            <label class="form-label">Ключ</label>
+            <input class="form-control portfolio-input mb-3"
+                   type="text" name="key" required>
+
+            <label class="form-label">Значення</label>
+            <input class="form-control portfolio-input mb-3"
+                   type="text" name="value" required>
+
+            <label class="form-label">Термін дії (хвилини)</label>
+            <input class="form-control portfolio-input mb-3"
+                   type="number" name="minutes"
+                   min="1" value="10" required>
+
+            <button class="outline-button" type="submit">
+                Додати cookie
+            </button>
+        </form>
+
+        <hr>
+
+        <h3>Видалити cookie за ключем</h3>
+
+        <form method="POST" action="{{ url_for('users.delete_cookie') }}">
+            <input class="form-control portfolio-input mb-3"
+                   type="text" name="key"
+                   placeholder="Ключ cookie" required>
+
+            <button class="outline-button" type="submit">
+                Видалити
+            </button>
+        </form>
+
+        <hr>
+
+        <h3>Видалити всі додані cookie</h3>
+
+        <form method="POST" action="{{ url_for('users.delete_all_cookies') }}">
+            <button class="outline-button" type="submit">
+                Видалити всі
+            </button>
+        </form>
+
+        <hr>
+
+        <h3>Поточні cookie</h3>
+
+        <div class="table-responsive">
+            <table class="table cookie-table">
+                <thead>
+                    <tr>
+                        <th>Ключ</th>
+                        <th>Значення</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in cookies.items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td class="cookie-value">{{ value }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2">Cookie відсутні</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h3>Кольорова схема</h3>
+
+        <div class="d-flex flex-wrap gap-3 mt-3">
+            <a class="outline-button"
+               href="{{ url_for('users.change_theme', theme='dark') }}">
+                Темна
+            </a>
+
+            <a class="outline-button"
+               href="{{ url_for('users.change_theme', theme='light') }}">
+                Світла
+            </a>
+        </div>
 
     </div>
 </section>

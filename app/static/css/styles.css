@@ -1005,3 +1005,86 @@ a:hover {
 .profile-box p {
     color: var(--muted);
 }
+
+
+.profile-box {
+    max-width: 900px;
+}
+
+.profile-box hr {
+    border-color: var(--border);
+    margin: 35px 0;
+    opacity: 1;
+}
+
+.profile-box h3 {
+    color: var(--accent);
+    margin-bottom: 25px;
+}
+
+.profile-box form {
+    margin-bottom: 20px;
+}
+
+.cookie-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: inherit;
+    --bs-table-border-color: var(--border);
+    color: inherit;
+}
+
+.cookie-table th {
+    color: var(--accent);
+}
+
+.cookie-value {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.profile-dark {
+    background-color: #211818;
+    color: #f3e8da;
+}
+
+.profile-light {
+    background-color: #f7f3ee;
+    color: #201b19;
+}
+
+.profile-light h1,
+.profile-light h3 {
+    color: #704632;
+}
+
+.profile-light h2,
+.profile-light p,
+.profile-light .form-label {
+    color: #201b19;
+}
+
+.profile-light .portfolio-input,
+.profile-light .portfolio-input:focus {
+    background: #ffffff;
+    color: #201b19;
+    border-color: #b7a69a;
+}
+
+.profile-light .outline-button {
+    color: #704632;
+    border-color: #704632;
+}
+
+.profile-light .outline-button:hover {
+    background: #704632;
+    color: white;
+}
+
+.profile-light .cookie-table {
+    --bs-table-color: #201b19;
+    --bs-table-border-color: #b7a69a;
+}
+
+.profile-light .cookie-table th {
+    color: #704632;
+}
