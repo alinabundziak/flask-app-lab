@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <h1>Welcome to Flask Application!</h1>
+    <p>Це головна сторінка мого Flask-застосунку.</p>
+
+    <a href="{{ url_for('resume') }}">
+        Переглянути резюме
+    </a>
+</section>
+{% endblock %}

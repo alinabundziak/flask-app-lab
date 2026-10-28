@@ -1,19 +1,5 @@
-#from flask import Flask
-
-#app = Flask(__name__)
-
-#@app.route('/')
-#def main():
-#    return 'Hello, world!'
-
-#if __name__ == '__main__':
-#    app.run(debug=True)
-
-    
-
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
+from flask import render_template, request
+from app import app
 
 
 @app.route("/")
@@ -29,8 +15,13 @@ def contact():
     if request.method == "POST":
         message = "Дякую! Це демонстраційна форма, тому повідомлення не надсилається."
 
-    return render_template("contact.html", title="Контакти", message=message)
+    return render_template(
+        "contact.html",
+        title="Контакти",
+        message=message
+    )
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/homepage")
+def home():
+    return render_template("homepage.html", title="Головна")
