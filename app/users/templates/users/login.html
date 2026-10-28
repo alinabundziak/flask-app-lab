@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+    <div class="login-box">
+
+        <h1>Вхід у систему</h1>
+
+        <form method="POST" action="{{ url_for('users.login') }}">
+
+            <div class="mb-4">
+                <label for="username" class="form-label">
+                    Ім'я користувача
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    class="form-control portfolio-input"
+                    required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label">
+                    Пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="form-control portfolio-input"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="outline-button">
+                Увійти
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}

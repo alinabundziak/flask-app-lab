@@ -980,3 +980,28 @@ a:hover {
 .product-card a:hover {
     color: var(--text);
 }
+
+
+.login-box,
+.profile-box {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.login-box h1,
+.profile-box h1 {
+    color: var(--accent);
+    margin-bottom: 30px;
+}
+
+.profile-box h2 {
+    margin-bottom: 20px;
+}
+
+.profile-box p {
+    color: var(--muted);
+}
