@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+
+        <div class="col-md-3">
+            <nav class="users-menu">
+                <h3>Flask App</h3>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('resume') }}">
+                            Головна
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('users.greetings', name='John', age=30) }}">
+                            Greet John
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('users.admin') }}">
+                            Admin
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-9">
+            <h1>Hello :)</h1>
+            <h2>User: {{ name }}</h2>
+
+            {% if age is not none %}
+                <p>Age: {{ age }}</p>
+            {% else %}
+                <p>Age: Not provided</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

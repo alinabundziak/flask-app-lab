@@ -912,3 +912,32 @@ a:hover {
         animation-duration: 0.01ms !important;
     }
 }
+.users-menu {
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.users-menu h3 {
+    color: var(--accent);
+    margin-bottom: 25px;
+}
+
+.users-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.users-menu li {
+    margin-bottom: 15px;
+}
+
+.users-menu a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.users-menu a:hover {
+    color: var(--accent);
+}
