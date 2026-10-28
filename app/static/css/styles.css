@@ -941,3 +941,42 @@ a:hover {
 .users-menu a:hover {
     color: var(--accent);
 }
+
+.product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 30px;
+    height: 100%;
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    border-color: var(--accent);
+}
+
+.product-card h1,
+.product-card h2 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.product-card p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.product-card h3 {
+    color: var(--text);
+    margin-top: 20px;
+}
+
+.product-card a {
+    display: inline-block;
+    color: var(--accent);
+    margin-top: 15px;
+}
+
+.product-card a:hover {
+    color: var(--text);
+}

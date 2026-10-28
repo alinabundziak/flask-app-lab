@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="product-card">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.content }}</p>
+        <h3>Ціна: ${{ product.price }}</h3>
+
+        <a href="{{ url_for('products.product_list') }}">
+            Назад до списку товарів
+        </a>
+    </div>
+</section>
+{% endblock %}
