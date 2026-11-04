@@ -1,15 +1,52 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-<section class="container py-5">
-    <div class="product-card">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.content }}</p>
-        <h3>Ціна: ${{ product.price }}</h3>
+<div class="container py-5">
+    <h1>{{ product.name }}</h1>
 
-        <a href="{{ url_for('products.product_list') }}">
-            Назад до списку товарів
-        </a>
-    </div>
-</section>
+    {% if product.image %}
+    <img
+        src="{{ url_for('products.static',
+                       filename=product.image) }}"
+        alt="{{ product.name }}"
+        style="max-width: 300px;"
+        class="mb-3">
+    {% else %}
+    <p>Зображення відсутнє</p>
+    {% endif %}
+
+    <p><strong>Опис:</strong> {{ product.content }}</p>
+    <p><strong>Категорія:</strong> {{ product.category }}</p>
+    <p><strong>Ціна:</strong> {{ product.price }} грн</p>
+    <p><strong>Кількість:</strong> {{ product.quantity }}</p>
+    <p><strong>Дата створення:</strong> {{ product.created_at }}</p>
+
+    <a href="{{ url_for(
+        'products.edit_product',
+        product_id=product.id
+    ) }}" class="btn btn-warning">
+        Редагувати
+    </a>
+
+    <form method="POST"
+          action="{{ url_for(
+              'products.delete_product',
+              product_id=product.id
+          ) }}"
+          class="d-inline"
+          onsubmit="return confirm('Видалити товар?')">
+
+        {{ delete_form.hidden_tag() }}
+
+        <button type="submit" class="btn btn-danger">
+            Видалити
+        </button>
+    </form>
+
+    <a href="{{ url_for('products.product_list') }}"
+       class="btn btn-secondary">
+        Назад
+    </a>
+</div>
 {% endblock %}

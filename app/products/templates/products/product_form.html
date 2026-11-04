@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% from "_form_field.html" import render_field %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">{{ title }}</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        {{ render_field(form.name) }}
+        {{ render_field(form.content) }}
+        {{ render_field(form.price) }}
+
+        <div class="mb-3">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-select") }}
+
+            {% for error in form.category.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        {{ render_field(form.quantity) }}
+        {{ render_field(form.image) }}
+
+        {{ form.submit(class="btn btn-primary") }}
+
+        <a href="{{ url_for('products.product_list') }}"
+           class="btn btn-secondary">
+            Назад
+        </a>
+    </form>
+</div>
+{% endblock %}
