@@ -7,11 +7,12 @@ from uuid import uuid4
 
 from flask import (
     render_template, redirect, url_for,
-    flash, abort
+    flash, abort, request
 )
 from flask_wtf import FlaskForm
 from PIL import Image
 from tinydb import Query
+from werkzeug.datastructures import FileStorage
 
 from . import product_bp
 from .forms import ProductForm
@@ -23,7 +24,7 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def save_image(image):
-    if not image or not image.filename:
+    if not isinstance(image, FileStorage) or not image.filename:
         return None
 
     image_bytes = image.read()
@@ -37,6 +38,7 @@ def save_image(image):
 
         with Image.open(BytesIO(image_bytes)) as img:
             image_format = img.format
+
     except Exception:
         raise ValueError("Некоректний файл зображення")
 
@@ -50,6 +52,7 @@ def save_image(image):
 
     filename = f"{uuid4().hex}.{extensions[image_format]}"
     filepath = UPLOAD_DIR / filename
+
     filepath.write_bytes(image_bytes)
 
     return f"uploads/{filename}"
@@ -67,6 +70,7 @@ def get_product(product_id):
 
 
 @product_bp.route("")
+@product_bp.route("/")
 def product_list():
     products = products_table.all()
 
@@ -98,8 +102,10 @@ def add_product():
     if form.validate_on_submit():
         try:
             image_path = save_image(form.image.data)
+
         except (ValueError, OSError) as error:
             flash(str(error), "danger")
+
             return render_template(
                 "products/product_form.html",
                 title="Додати товар",
@@ -126,7 +132,10 @@ def add_product():
         )
 
         flash("Товар успішно додано!", "success")
-        return redirect(url_for("products.product_list"))
+
+        return redirect(
+            url_for("products.product_list")
+        )
 
     return render_template(
         "products/product_form.html",
@@ -135,25 +144,31 @@ def add_product():
     )
 
 
-@product_bp.route("/<int:product_id>/edit",
-                  methods=["GET", "POST"])
+@product_bp.route(
+    "/<int:product_id>/edit",
+    methods=["GET", "POST"]
+)
 def edit_product(product_id):
     product = get_product(product_id)
 
-    form = ProductForm(
-    data={
+    form_data = {
         **product,
-        "price": Decimal(product["price"])
+        "price": Decimal(product["price"]),
+        "image": None
     }
-)
+
+    form = ProductForm(data=form_data)
+
     if form.validate_on_submit():
         image_path = product.get("image")
 
-        if form.image.data and form.image.data.filename:
+        if isinstance(form.image.data, FileStorage) and form.image.data.filename:
             try:
                 image_path = save_image(form.image.data)
+
             except (ValueError, OSError) as error:
                 flash(str(error), "danger")
+
                 return render_template(
                     "products/product_form.html",
                     title="Редагувати товар",
@@ -175,6 +190,7 @@ def edit_product(product_id):
         )
 
         flash("Товар успішно оновлено!", "success")
+
         return redirect(
             url_for(
                 "products.product_detail",
@@ -189,14 +205,22 @@ def edit_product(product_id):
     )
 
 
-@product_bp.route("/<int:product_id>/delete",
-                  methods=["POST"])
+@product_bp.route(
+    "/<int:product_id>/delete",
+    methods=["POST"]
+)
 def delete_product(product_id):
     form = FlaskForm()
 
     if not form.validate_on_submit():
-        flash("Помилка перевірки запиту!", "danger")
-        return redirect(url_for("products.product_list"))
+        flash(
+            "Помилка перевірки запиту!",
+            "danger"
+        )
+
+        return redirect(
+            url_for("products.product_list")
+        )
 
     get_product(product_id)
 
@@ -205,4 +229,7 @@ def delete_product(product_id):
     )
 
     flash("Товар успішно видалено!", "success")
-    return redirect(url_for("products.product_list"))
+
+    return redirect(
+        url_for("products.product_list")
+    )
