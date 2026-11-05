@@ -19,47 +19,75 @@
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('home') }}">Головна</a>
+                    <a class="nav-link" href="{{ url_for('home') }}">
+                        Головна
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}">Резюме</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}">
+                        Резюме
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}#about">Про себе</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}#about">
+                        Про себе
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}#education">Освіта</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}#education">
+                        Освіта
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}#skills">Навички</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}#skills">
+                        Навички
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}#technologies">Технології</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}#technologies">
+                        Технології
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}#projects">Проєкти</a>
+                    <a class="nav-link" href="{{ url_for('resume') }}#projects">
+                        Проєкти
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('products.product_list') }}">Товари</a>
+                    <a class="nav-link" href="{{ url_for('products.product_list') }}">
+                        Товари
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('users.profile') }}">Профіль</a>
+                    <a class="nav-link" href="{{ url_for('posts.all_posts') }}">
+                        Пости
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('users.login') }}">Вхід</a>
+                    <a class="nav-link" href="{{ url_for('users.profile') }}">
+                        Профіль
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link nav-contact" href="{{ url_for('contact') }}">Контакти ↗</a>
+                    <a class="nav-link" href="{{ url_for('users.login') }}">
+                        Вхід
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-contact" href="{{ url_for('contact') }}">
+                        Контакти ↗
+                    </a>
                 </li>
 
             </ul>

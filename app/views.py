@@ -1,39 +1,53 @@
+
 import logging
 from pathlib import Path
 
 from flask import (
-    render_template, redirect, url_for, flash
+    render_template,
+    redirect,
+    url_for,
+    flash,
+    current_app
 )
 
-from app import app
 from app.forms import ContactForm
-from flask import render_template, request
-from app import app
 
 
-@app.route("/")
-@app.route("/resume")
 def resume():
-    return render_template("resume.html", title="Резюме")
+    return render_template(
+        "resume.html",
+        title="Резюме"
+    )
 
 
-
-@app.route("/contact", methods=["GET", "POST"])
 def contact():
     form = ContactForm()
 
     if form.validate_on_submit():
-        log_dir = Path(app.root_path).parent / "logs"
-        log_dir.mkdir(exist_ok=True)
+        log_dir = Path(current_app.root_path).parent / "logs"
+        log_dir.mkdir(parents=True, exist_ok=True)
 
-        logging.basicConfig(
-            filename=log_dir / "contacts.log",
-            level=logging.INFO,
-            format="%(asctime)s - %(message)s"
-        )
+        log_file = log_dir / "contacts.log"
 
         try:
-            logging.info(
+            logger = logging.getLogger("contacts")
+            logger.setLevel(logging.INFO)
+
+            if not logger.handlers:
+                handler = logging.FileHandler(
+                    log_file,
+                    encoding="utf-8"
+                )
+
+                handler.setFormatter(
+                    logging.Formatter(
+                        "%(asctime)s - %(message)s"
+                    )
+                )
+
+                logger.addHandler(handler)
+
+            logger.info(
                 "Name: %s | Email: %s | Phone: %s | "
                 "Subject: %s | Message: %s",
                 form.name.data,
@@ -69,7 +83,8 @@ def contact():
     )
 
 
-
-@app.route("/homepage")
 def home():
-    return render_template("homepage.html", title="Головна")
+    return render_template(
+        "homepage.html",
+        title="Головна"
+    )

@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="posts-page">
+    <div class="container">
+
+        <p class="posts-label text-center">
+            Portfolio / Publication
+        </p>
+
+        <div class="post-detail-box">
+
+            <div class="post-category">
+                {{ post.category }}
+            </div>
+
+            <h1 class="posts-heading">
+                {{ post.title }}<span>.</span>
+            </h1>
+
+            <div class="post-meta mt-4">
+                <span>Автор: {{ post.author }}</span>
+
+                <span>
+                    {{ post.posted.strftime('%d.%m.%Y %H:%M') }}
+                </span>
+
+                <span>
+                    {% if post.is_active %}
+                        Активний
+                    {% else %}
+                        Неактивний
+                    {% endif %}
+                </span>
+            </div>
+
+            <hr class="posts-divider">
+
+            <div class="post-full-content">{{ post.content }}</div>
+
+            <hr class="posts-divider">
+
+            <div class="post-actions">
+                <a href="{{ url_for('posts.update_post', id=post.id) }}"
+                   class="post-btn">
+                    Редагувати
+                </a>
+
+                <a href="{{ url_for('posts.delete_post', id=post.id) }}"
+                   class="post-btn post-btn-danger">
+                    Видалити
+                </a>
+
+                <a href="{{ url_for('posts.all_posts') }}"
+                   class="post-btn post-btn-outline">
+                    Назад
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

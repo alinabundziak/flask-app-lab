@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="posts-page">
+    <div class="container">
+
+        <p class="posts-label text-center">
+            Portfolio / Delete
+        </p>
+
+        <h1 class="posts-heading text-center">
+            Видалення <span>поста.</span>
+        </h1>
+
+        <div class="post-form-box">
+
+            <div class="post-notice">
+                Ти впевнена, що хочеш видалити пост
+                <strong>{{ post.title }}</strong>?
+
+                <p class="mb-0 mt-2">
+                    Цю дію неможливо скасувати.
+                </p>
+            </div>
+
+            <form method="POST">
+                <div class="post-actions">
+                    <button type="submit"
+                            class="post-btn post-btn-danger">
+                        Так, видалити
+                    </button>
+
+                    <a href="{{ url_for('posts.detail_post', id=post.id) }}"
+                       class="post-btn post-btn-outline">
+                        Скасувати
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

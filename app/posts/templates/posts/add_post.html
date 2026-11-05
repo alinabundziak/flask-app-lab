@@ -1,0 +1,80 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<section class="posts-page">
+    <div class="container">
+
+        <p class="posts-label text-center">
+            Portfolio / Editor
+        </p>
+
+        <h1 class="posts-heading text-center">
+            {{ title }}<span>.</span>
+        </h1>
+
+        <div class="post-form-box">
+
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-4">
+                    {{ form.title.label(class="form-label post-form-label") }}
+                    {{ form.title(
+                        class="form-control",
+                        placeholder="Введи назву поста"
+                    ) }}
+
+                    {% for error in form.title.errors %}
+                    <div class="post-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-4">
+                    {{ form.content.label(class="form-label post-form-label") }}
+                    {{ form.content(
+                        class="form-control",
+                        rows="6",
+                        placeholder="Напиши свій текст..."
+                    ) }}
+
+                    {% for error in form.content.errors %}
+                    <div class="post-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        {{ form.category.label(class="form-label post-form-label") }}
+                        {{ form.category(class="form-select") }}
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        {{ form.publish_date.label(class="form-label post-form-label") }}
+                        {{ form.publish_date(class="form-control") }}
+
+                        {% for error in form.publish_date.errors %}
+                        <div class="post-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-check mb-4">
+                    {{ form.is_active(class="form-check-input") }}
+                    {{ form.is_active.label(class="form-check-label") }}
+                </div>
+
+                <div class="post-actions">
+                    {{ form.submit(class="post-btn") }}
+
+                    <a href="{{ url_for('posts.all_posts') }}"
+                       class="post-btn post-btn-outline">
+                        Скасувати
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

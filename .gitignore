@@ -4,3 +4,5 @@ __pycache__/
 logs/
 data/products.json
 app/products/static/uploads/
+.env
+instance/
