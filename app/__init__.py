@@ -4,6 +4,8 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
 
@@ -22,6 +24,8 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
 
 
 def create_app(config_name=None):
@@ -31,10 +35,16 @@ def create_app(config_name=None):
     app = Flask(__name__)
 
     app.config.from_object(config[config_name])
-    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_ECHO"] = False
 
     db.init_app(app)
     migrate.init_app(app, db)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+
+    login_manager.login_view = "users.login"
+    login_manager.login_message = "Увійдіть, щоб отримати доступ до цієї сторінки."
+    login_manager.login_message_category = "warning"
 
     from app.users import user_bp
     from app.products import product_bp

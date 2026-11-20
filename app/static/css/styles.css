@@ -1088,3 +1088,24 @@ a:hover {
 .profile-light .cookie-table th {
     color: #704632;
 }
+
+
+.portfolio-navbar .nav-logout {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+.portfolio-navbar .nav-logout:hover {
+    color: #dca58c;
+}
+
+.portfolio-navbar .nav-logout:focus-visible {
+    outline: 2px solid #dca58c;
+    outline-offset: 3px;
+    border-radius: 4px;
+}

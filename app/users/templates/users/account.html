@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="auth-container">
+
+        <p class="auth-label">ACCOUNT / PROFILE</p>
+
+        <div class="auth-box">
+
+            <h1 class="auth-title">
+                Мій профіль<span>.</span>
+            </h1>
+
+            <p class="auth-description">
+                Вітаємо, {{ user.username }}!
+            </p>
+
+            <div class="auth-field">
+                <p class="auth-field-label">Ім'я користувача</p>
+                <p>{{ user.username }}</p>
+            </div>
+
+            <div class="auth-field">
+                <p class="auth-field-label">Електронна пошта</p>
+                <p>{{ user.email }}</p>
+            </div>
+
+            <div class="auth-field">
+                <p class="auth-field-label">ID користувача</p>
+                <p>{{ user.id }}</p>
+            </div>
+
+            <div class="auth-footer">
+                <a href="{{ url_for('users.profile') }}">
+                    Налаштування профілю
+                </a>
+            </div>
+
+            <form
+                method="POST"
+                action="{{ url_for('users.logout') }}"
+                class="mt-4"
+            >
+                <button type="submit" class="auth-btn">
+                    Вийти із системи
+                </button>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

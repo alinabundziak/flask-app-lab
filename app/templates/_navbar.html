@@ -72,17 +72,37 @@
                     </a>
                 </li>
 
+                {% if current_user.is_authenticated %}
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('users.profile') }}">
+                    <a class="nav-link" href="{{ url_for('users.account') }}">
                         Профіль
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <form method="POST" action="{{ url_for('users.logout') }}" class="m-0">
+                        <button type="submit" class="nav-link nav-logout">
+                            Вихід
+                        </button>
+                    </form>
+                </li>
+
+                {% else %}
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('users.login') }}">
                         Вхід
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.register') }}">
+                        Реєстрація
+                    </a>
+                </li>
+
+                {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link nav-contact" href="{{ url_for('contact') }}">

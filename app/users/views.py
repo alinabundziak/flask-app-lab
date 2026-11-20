@@ -1,10 +1,27 @@
+
 import re
 
 from flask import (
-    render_template, request, redirect,
-    url_for, session, flash, make_response
+    render_template,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash,
+    make_response
 )
+
+from flask_login import (
+    login_user,
+    logout_user,
+    login_required,
+    current_user
+)
+
 from . import user_bp
+from app import db
+from app.forms import RegistrationForm, LoginForm
+from app.users.models import User
 
 
 @user_bp.route("/hi/<string:name>")
@@ -30,35 +47,115 @@ def admin():
         )
     )
 
-@user_bp.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
 
-        if username == "student" and password == "12345":
-            session["username"] = username
+@user_bp.route("/register", methods=["GET", "POST"])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("users.account"))
 
-            flash("Вхід успішний!", "success")
+    form = RegistrationForm()
 
-            return redirect(url_for("users.profile"))
+    if form.validate_on_submit():
+        user = User(
+            username=form.username.data.strip(),
+            email=form.email.data.strip().lower(),
+            password=""
+        )
 
-        flash("Неправильний логін або пароль!", "danger")
+        user.hash_password(form.password.data)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash(
+            "Реєстрація успішна! Тепер увійдіть у систему.",
+            "success"
+        )
+
         return redirect(url_for("users.login"))
 
-    return render_template("users/login.html", title="Вхід")
+    return render_template(
+        "users/register.html",
+        title="Реєстрація",
+        form=form
+    )
 
+
+@user_bp.route("/login", methods=["GET", "POST"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("users.account"))
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        email = form.email.data.strip().lower()
+        password = form.password.data
+
+        user = db.session.scalar(
+            db.select(User).where(User.email == email)
+        )
+
+        if user and user.check_password(password):
+            login_user(
+                user,
+                remember=form.remember.data
+            )
+
+            session["username"] = user.username
+
+            flash(
+                "Ви успішно увійшли в систему!",
+                "success"
+            )
+
+            return redirect(url_for("users.account"))
+
+        flash(
+            "Неправильна електронна пошта або пароль!",
+            "danger"
+        )
+
+    return render_template(
+        "users/login.html",
+        title="Вхід",
+        form=form
+    )
+
+
+@user_bp.route("/account")
+@login_required
+def account():
+    return render_template(
+        "users/account.html",
+        title="Мій профіль",
+        user=current_user
+    )
+
+
+@user_bp.route("/all-users")
+@login_required
+def all_users():
+    users = db.session.scalars(
+        db.select(User).order_by(User.id)
+    ).all()
+
+    return render_template(
+        "users/all_users.html",
+        title="Список користувачів",
+        users=users
+    )
 
 
 @user_bp.route("/profile")
+@login_required
 def profile():
-    if "username" not in session:
-        flash("Спочатку увійдіть у систему!", "warning")
-        return redirect(url_for("users.login"))
-
     cookies = dict(request.cookies)
 
-    theme = request.cookies.get("profile_theme", "dark")
+    theme = request.cookies.get(
+        "profile_theme",
+        "dark"
+    )
 
     if theme not in ("light", "dark"):
         theme = "dark"
@@ -66,28 +163,29 @@ def profile():
     return render_template(
         "users/profile.html",
         title="Профіль",
-        username=session["username"],
+        username=current_user.username,
         cookies=cookies,
         theme=theme
     )
 
 
-
 @user_bp.route("/logout", methods=["POST"])
+@login_required
 def logout():
+    logout_user()
     session.pop("username", None)
 
-    flash("Ви успішно вийшли із системи!", "success")
+    flash(
+        "Ви успішно вийшли із системи!",
+        "success"
+    )
 
     return redirect(url_for("users.login"))
 
 
 @user_bp.route("/add-cookie", methods=["POST"])
+@login_required
 def add_cookie():
-    if "username" not in session:
-        flash("Спочатку увійдіть!", "warning")
-        return redirect(url_for("users.login"))
-
     key = request.form.get("key", "").strip()
     value = request.form.get("value", "")
     minutes = request.form.get("minutes", type=int)
@@ -117,11 +215,8 @@ def add_cookie():
 
 
 @user_bp.route("/delete-cookie", methods=["POST"])
+@login_required
 def delete_cookie():
-    if "username" not in session:
-        flash("Спочатку увійдіть!", "warning")
-        return redirect(url_for("users.login"))
-
     key = request.form.get("key", "").strip()
 
     if not re.fullmatch(r"[A-Za-z0-9_]+", key):
@@ -139,11 +234,8 @@ def delete_cookie():
 
 
 @user_bp.route("/delete-all-cookies", methods=["POST"])
+@login_required
 def delete_all_cookies():
-    if "username" not in session:
-        flash("Спочатку увійдіть!", "warning")
-        return redirect(url_for("users.login"))
-
     response = make_response(
         redirect(url_for("users.profile"))
     )
@@ -152,15 +244,17 @@ def delete_all_cookies():
         if key.startswith("lab4_"):
             response.delete_cookie(key)
 
-    flash("Усі додані cookie видалено!", "success")
+    flash(
+        "Усі додані cookie видалено!",
+        "success"
+    )
+
     return response
 
-@user_bp.route("/theme/<string:theme>")
-def change_theme(theme):
-    if "username" not in session:
-        flash("Спочатку увійдіть!", "warning")
-        return redirect(url_for("users.login"))
 
+@user_bp.route("/theme/<string:theme>")
+@login_required
+def change_theme(theme):
     if theme not in ("light", "dark"):
         flash("Невідома кольорова схема!", "danger")
         return redirect(url_for("users.profile"))
