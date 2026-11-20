@@ -64,6 +64,29 @@
                     </div>
                 </div>
 
+                <div class="mb-4">
+                    {{ form.author_id.label(class="form-label post-form-label") }}
+                    {{ form.author_id(class="form-select") }}
+
+                    {% for error in form.author_id.errors %}
+                        <div class="post-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-4">
+                    {{ form.tags.label(class="form-label post-form-label") }}
+
+                    {{ form.tags(class="form-select", size="3") }}
+
+                    {% for error in form.tags.errors %}
+                        <div class="post-error">{{ error }}</div>
+                    {% endfor %}
+
+                    <small class="post-form-hint">
+                        Утримуй Ctrl, щоб вибрати декілька тегів.
+                    </small>
+                </div>
+
                 <div class="form-check mb-4">
                     {{ form.is_active(class="form-check-input") }}
                     {{ form.is_active.label(class="form-check-label") }}

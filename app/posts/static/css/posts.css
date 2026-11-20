@@ -300,3 +300,84 @@
         font-size: 26px;
     }
 }
+
+/* Випадаючий список авторів */
+.post-form-box .form-select {
+    background-color: #1b1416;
+    color: #f5e8df;
+    border: 1px solid #dfa98b;
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.post-form-box .form-select:focus {
+    background-color: #24191d;
+    color: #ffffff;
+    border-color: #dfa98b;
+    box-shadow: 0 0 0 3px rgba(223, 169, 139, 0.18);
+    outline: none;
+}
+
+/* Варіанти списку */
+.post-form-box .form-select option {
+    background-color: #24191d;
+    color: #f5e8df;
+}
+
+.post-form-box .form-select option:checked {
+    background-color: #754739;
+    color: #ffffff;
+}
+
+.post-form-box select[multiple] {
+    background-color: #1b1416;
+    color: #f5e8df;
+    border: 1px solid #754739;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 120px;
+}
+
+.post-form-box select[multiple] option {
+    padding: 10px 12px;
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+
+.post-form-box select[multiple] option:checked {
+    background: #dfa98b linear-gradient(#dfa98b, #dfa98b);
+    color: #1b1416;
+}
+
+.post-form-hint {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #b79a8d;
+}
+
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 28px;
+}
+
+.post-tag {
+    display: inline-block;
+    padding: 7px 15px;
+    background-color: rgba(223, 169, 139, 0.12);
+    border: 1px solid #dfa98b;
+    border-radius: 20px;
+    color: #dfa98b;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.post-tag:hover {
+    background-color: #dfa98b;
+    color: #1b1416;
+}

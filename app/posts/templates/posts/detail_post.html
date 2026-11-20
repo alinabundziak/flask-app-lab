@@ -25,7 +25,14 @@
             </h1>
 
             <div class="post-meta mt-4">
-                <span>Автор: {{ post.author }}</span>
+                <span>
+                    Автор:
+                    {% if post.user %}
+                        {{ post.user.username }}
+                    {% else %}
+                        {{ post.author }}
+                    {% endif %}
+                </span>
 
                 <span>
                     {{ post.posted.strftime('%d.%m.%Y %H:%M') }}
@@ -42,7 +49,17 @@
 
             <hr class="posts-divider">
 
-            <div class="post-full-content">{{ post.content }}</div>
+            {% if post.tags %}
+                <div class="post-tags">
+                    {% for tag in post.tags %}
+                        <span class="post-tag">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="post-full-content">
+                {{ post.content }}
+            </div>
 
             <hr class="posts-divider">
 

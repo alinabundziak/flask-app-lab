@@ -6,9 +6,13 @@ from wtforms import (
     BooleanField,
     DateTimeLocalField,
     SelectField,
+    SelectMultipleField,
     SubmitField
 )
 from wtforms.validators import DataRequired, Length
+
+from app.users.models import User
+from app.posts.models import Tag
 
 
 class PostForm(FlaskForm):
@@ -47,4 +51,28 @@ class PostForm(FlaskForm):
         default="other"
     )
 
+    author_id = SelectField(
+        "Автор",
+        coerce=int,
+        validators=[DataRequired()]
+    )
+
+    tags = SelectMultipleField(
+        "Теги",
+        coerce=int
+    )
+
     submit = SubmitField("Зберегти")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.author_id.choices = [
+            (user.id, user.username)
+            for user in User.query.order_by(User.id).all()
+        ]
+
+        self.tags.choices = [
+            (tag.id, tag.name)
+            for tag in Tag.query.order_by(Tag.name).all()
+        ]

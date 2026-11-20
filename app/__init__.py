@@ -31,6 +31,7 @@ def create_app(config_name=None):
     app = Flask(__name__)
 
     app.config.from_object(config[config_name])
+    app.config["SQLALCHEMY_ECHO"] = True
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -39,8 +40,9 @@ def create_app(config_name=None):
     from app.products import product_bp
     from app.posts import post_bp
 
-    from app.posts.models import Post
+    from app.posts.models import Post, Tag
     from app.products.models import Product, Category
+    from app.users.models import User
 
     app.register_blueprint(user_bp)
     app.register_blueprint(product_bp)
