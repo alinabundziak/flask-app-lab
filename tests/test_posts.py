@@ -43,6 +43,7 @@ class PostTests(unittest.TestCase):
         db.drop_all()
         self.context.pop()
 
+    
     def create_post(self):
         post = Post(
             title="Тестовий пост",
@@ -50,7 +51,6 @@ class PostTests(unittest.TestCase):
             category="news",
             posted=datetime.now(),
             is_active=True,
-            author=self.user.username,
             user_id=self.user_id
         )
 
@@ -58,6 +58,7 @@ class PostTests(unittest.TestCase):
         db.session.commit()
 
         return post
+
 
     def test_posts_page(self):
         response = self.client.get("/post/")

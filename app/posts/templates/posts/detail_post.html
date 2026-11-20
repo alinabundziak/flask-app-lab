@@ -25,14 +25,7 @@
             </h1>
 
             <div class="post-meta mt-4">
-                <span>
-                    Автор:
-                    {% if post.user %}
-                        {{ post.user.username }}
-                    {% else %}
-                        {{ post.author }}
-                    {% endif %}
-                </span>
+                <span>Автор: {{ post.user.username }}</span>
 
                 <span>
                     {{ post.posted.strftime('%d.%m.%Y %H:%M') }}

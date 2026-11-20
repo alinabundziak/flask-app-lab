@@ -62,8 +62,7 @@ def create_post():
             category=form.category.data,
             is_active=form.is_active.data,
             posted=form.publish_date.data,
-            user_id=selected_user.id,
-            author=selected_user.username
+            user_id=selected_user.id
         )
 
         post.tags = selected_tags
@@ -110,7 +109,6 @@ def update_post(id):
         post.is_active = form.is_active.data
         post.posted = form.publish_date.data
         post.user_id = selected_user.id
-        post.author = selected_user.username
         post.tags = selected_tags
 
         db.session.commit()
@@ -122,10 +120,7 @@ def update_post(id):
 
     if not form.is_submitted():
         form.publish_date.data = post.posted
-
-        if post.user_id is not None:
-            form.author_id.data = post.user_id
-
+        form.author_id.data = post.user_id
         form.tags.data = [tag.id for tag in post.tags]
 
     return render_template(
